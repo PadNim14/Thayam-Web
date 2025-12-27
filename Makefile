@@ -2,14 +2,14 @@
 # Infer the repository URL from the git remote
 REPO_URL := $(shell git config --get remote.origin.url)
 
-APP_NAME = 'Space Invaders'
-ICON = 'src/images/favicon.png'
+APP_NAME = 'Thayam'
+ICON =
 
 CNAME = 
 
 
 publish:
-	@pygbag --build --app_name $(APP_NAME) --icon $(ICON)  src
+	@pygbag --build --app_name $(APP_NAME) $(if $(ICON),--icon $(ICON),) src
 	@echo "Publishing to $(REPO_URL)"
 ifdef CNAME
 	@ghp-import -n -p --cname $(CNAME) -f ./src/build/web 
